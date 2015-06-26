@@ -24,7 +24,31 @@ int checkJitter(int oldVal, int newVal) {
     
   }
  
-  
+  if(newVal >= lowLimit) {
+    /** check if too much medium **/
+    
+    if((newVal - lowLimit) > jitter) {
+      return 1; 
+    }
+    
+    
+  }
+  else if(newVal < lowLimit) {
+    /* check if too much low/**
+    
+    if((lowLimit - newVal) > jitter) {
+      return 1; 
+    }
+    
+  }
+  else if(newVal >= highLimit) {
+    
+    /** check if too much high **/
+    if((newVal - highLimit) > jitter) {
+      return 1; 
+    }
+    
+  }
   
  
  return 0; 

@@ -8,7 +8,6 @@ For more information see http://learn.adafruit.com/photocells */
 #include <Bridge.h>
 #include <YunServer.h>
 #include <YunClient.h>
-#include <lmTimer2.h>
 #include "config.h"
 
  
@@ -51,14 +50,16 @@ void setup(void) {
 }
  
 void loop(void) {
+  
+  int oldValue = rawValue;
    
    rawValue = analogRead(photocellPin);  
    
     
-  Serial.print("Analog reading = ");
-  Serial.println(rawValue); // the raw analog reading
+//  Serial.print("Analog reading = ");
+//  Serial.println(rawValue); // the raw analog reading
 
-   checkStateForPhotoCell(rawValue);
+   checkStateForPhotoCell(oldValue, rawValue);
   
   YunClient client = server.accept();
   

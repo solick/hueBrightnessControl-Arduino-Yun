@@ -9,7 +9,7 @@ int lowPin = 9;
 int highPin = 10;
        // 
 int rawValue = 0; //raw analog value
-int brightnessState = 0;
+int brightnessState = 1;
 
 int button = 8;
 int buttonState = 0;
@@ -22,9 +22,9 @@ int lowLimit = 750;
 int highLimit = 900;
 
 int delayTime = 20;
+int jitter = 20;
 
 YunServer server;
-lmTimer2 timer;
 
 /** Structs **/
 

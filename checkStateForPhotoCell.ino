@@ -1,7 +1,7 @@
 
 
 /***************/
-void checkStateForPhotoCell(int value) {
+void checkStateForPhotoCell(int oldV, int newV) {
 /***************/
 
    if(active == 1)
@@ -10,9 +10,13 @@ void checkStateForPhotoCell(int value) {
     int actualState = brightnessState;
     int newState = 0;
     
-    int tick = timer.checkTime();
-    int performChange = 0;
+    if(checkJitter(oldV, newV) == 0) {
+       return; 
+    }
     
+    //int tick = timer.checkTime();
+    int performChange = 1;
+/*    
     if(tick == -1) {
       
       timer.start();
@@ -21,8 +25,8 @@ void checkStateForPhotoCell(int value) {
     }
     else {
       
-      //Serial.print("tick: ");
-      //Serial.println(tick);
+      Serial.print("tick: ");
+      Serial.println(tick);
       
       if(tick >= delayTime) {
          
@@ -30,9 +34,11 @@ void checkStateForPhotoCell(int value) {
         performChange = 1; 
         
       }
-      
+     
       
     }
+    
+    */
     
     
     if(performChange == 1) {
@@ -54,35 +60,9 @@ void checkStateForPhotoCell(int value) {
                newState = highBrightness;
             }  
             
-            
-            
-             // switch all LEDs off
-             digitalWrite(lowPin, LOW);
-             digitalWrite(mediumPin, LOW);
-             digitalWrite(highPin, LOW);
-            
-            
-            if(rawValue < lowLimit)
-            {
-              //low light
-              digitalWrite(lowPin, HIGH);
-              brightnessState = lowBrightness;
-              
+            brightnessState = newState;
           
-            } 
-            else if(rawValue >= lowLimit && rawValue < highLimit)
-            {
-              // normal light
-              digitalWrite(mediumPin, HIGH);
-               brightnessState = mediumBrightness;
-              
-            } 
-            else if(rawValue >= highLimit)
-            {
-              // brigt light
-              digitalWrite(highPin, HIGH);
-               brightnessState = highBrightness;
-            }  
+          setLEDState();  
               
             
           }

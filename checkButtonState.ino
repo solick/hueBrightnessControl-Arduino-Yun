@@ -12,6 +12,7 @@ void checkButtonState() {
     Serial.println("ON");
     if(active == 0) {
       active = 1;
+      setLEDState();
     }
     else {
       Serial.println("OFF");
