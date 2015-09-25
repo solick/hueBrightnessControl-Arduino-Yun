@@ -6,36 +6,37 @@ int checkJitter(int oldVal, int newVal) {
   Serial.print("  -- newVal: ");
   Serial.println(newVal);
   
-  
-  if(oldVal > newVal) {
-    /** decreasing brightness **/
-    if ((oldVal - newVal) > jitter) {
-      return 1;
-    }
-    
-    
-    
-  }
-  else if(oldVal < newVal) {
-   /** increasing brightness **/ 
-   if((newVal - oldVal) > jitter) {
-     return 1;
-   }
-    
-  }
  
-  if(newVal >= lowLimit) {
+  if(newVal >= lowLimit && newVal < highLimit) {
     /** check if too much medium **/
+    //Serial.println("newVal >= lowLimit && newVal < highLimit");
     
-    if((newVal - lowLimit) > jitter) {
+    /** check to which limit newVal is closer **/
+    int diff = highLimit - lowLimit;
+    
+    if((newVal - lowLimit) < (highLimit - newVal) ) {
+      //closer to low Limit
+      //Serial.println("closer to low");
+      if((newVal - lowLimit) > jitter) {
       return 1; 
+      }
     }
+    else {
+      if((highLimit- newVal) > jitter) {
+        //Serial.println("closer to high");
+      return 1; 
+      }
+      
+    }
+    
+    
     
     
   }
   else if(newVal < lowLimit) {
-    /* check if too much low/**
+    /* check if too much low */
     
+    //Serial.println("newVal < lowLimit");
     if((lowLimit - newVal) > jitter) {
       return 1; 
     }
@@ -44,6 +45,8 @@ int checkJitter(int oldVal, int newVal) {
   else if(newVal >= highLimit) {
     
     /** check if too much high **/
+    //Serial.print("newVal - highLimit) > jitter: ");
+    //Serial.println((newVal - highLimit) > jitter);
     if((newVal - highLimit) > jitter) {
       return 1; 
     }
@@ -52,5 +55,6 @@ int checkJitter(int oldVal, int newVal) {
   
  
  return 0; 
+
   
 }
