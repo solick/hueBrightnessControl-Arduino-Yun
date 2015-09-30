@@ -18,8 +18,8 @@ int active = 0;
 
 int count = 0;
 
-int lowLimit = 750;
-int highLimit = 900;
+int lowLimit = 700;
+int highLimit = 850;
 
 int delayTime = 20;
 int jitter = 20;
