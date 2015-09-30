@@ -29,8 +29,10 @@ if active flag is yes, checks the jitter (checkJitter) to avoid switching to fas
 
 ## checkJitter.ino
 
+To avoid fast switching between different brightness states, a jitter has been added. At config.h, thet jitter value can be defined and each call of checkKitter evaluates, if the new brightness Value differs more than the jitter from the nearest brightness limit.
 
 ## processYunServer.ioo
 
+Processes the REST rewuests by the Yun Bridge and returns the aktual state (not active, low, medium, high) according to the Brightness limits.
 
 
