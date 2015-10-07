@@ -22,7 +22,7 @@ int lowLimit = 680;
 int highLimit = 830;
 
 int delayTime = 20;
-int jitter = 20;
+int jitter = 15;
 
 YunServer server;
 
