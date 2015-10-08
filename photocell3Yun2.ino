@@ -1,9 +1,9 @@
-/* Photocell simple testing sketch. 
- 
-Connect one end of the photocell to 5V, the other end to Analog 0.
-Then connect one end of a 10K resistor from Analog 0 to ground 
-Connect LED from pin 11 through a resistor to ground 
-For more information see http://learn.adafruit.com/photocells */
+/* This code was inspired by the example code of adafruit.com */
+/**
+Copyright (C) 2015 Lyn Matten
+Open Source: Apache Licence 2.0
+All Rights reserved
+**/
 
 #include <Bridge.h>
 #include <YunServer.h>
@@ -54,10 +54,6 @@ void loop(void) {
   int oldValue = rawValue;
    
    rawValue = analogRead(photocellPin);  
-   
-    
-//  Serial.print("Analog reading = ");
-//  Serial.println(rawValue); // the raw analog reading
 
    checkStateForPhotoCell(oldValue, rawValue);
   
